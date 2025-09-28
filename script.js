@@ -17,7 +17,7 @@ function applyConfig(){
   document.getElementById('store-name').textContent = config.storeName || 'JULIANJOKI';
   document.getElementById('hero-sub').textContent = config.heroSub || 'Jasa joki game Roblox — aman, cepat';
   const hero = document.getElementById('hero');
-  if(config.heroImage) hero.style.backgroundImage = `url(${config.heroImage})`;
+  if(config.heroImage) hero.style.backgroundImage = `url(https://files.catbox.moe/fmd67s.jpg)`;
 }
 
 function formatPrice(v){ return v.toFixed(2).replace('.',',') }
