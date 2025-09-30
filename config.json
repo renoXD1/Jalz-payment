@@ -1,5 +1,6 @@
 {
-  "storeName": "JULIANJOKI",
-  "heroImage": "https://files.catbox.moe/fmd67s.jpg",
-  "heroSub": "Jasa joki Roblox: Aman • Cepat • Terpercaya"
+  "background": "url('https://files.catbox.moe/fmd67s.jpg')",
+  "accent": "#10b981",
+  "storeName": "JULIAN JOKI",
+  "tagline": "Jasa joki Roblox — cepat, aman, terpercaya"
 }
