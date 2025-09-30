@@ -8,58 +8,50 @@
 </head>
 <body>
   <!-- Navbar -->
-  <header class="navbar">
-    <div class="logo">JULIANJOKI</div>
-    <button class="menu-toggle" id="menu-toggle">☰</button>
-    <nav id="menu" class="menu hidden">
-      <ul>
-        <li><a href="#" data-category="Leveling">Joki Leveling</a></li>
-        <li><a href="#" data-category="AFK">Joki AFK</a></li>
-        <li><a href="#" data-category="Rank">Joki Rank</a></li>
-      </ul>
-    </nav>
-  </header>
+  <nav class="navbar">
+    <div class="nav-brand">JULIANJOKI</div>
+    <button id="menu-toggle" class="menu-toggle">☰</button>
+    <ul id="menu" class="menu hidden">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#products" data-category="Leveling">Leveling</a></li>
+      <li><a href="#products" data-category="AFK">AFK</a></li>
+      <li><a href="#products" data-category="Rank">Rank</a></li>
+      <!-- kalau ada kategori baru tinggal tambah -->
+      <li><a href="#contact">Kontak</a></li>
+    </ul>
+  </nav>
 
-  <!-- Hero -->
+  <!-- Hero Section -->
   <header id="hero" class="hero">
     <div class="hero-content">
       <h1 id="store-name">JULIANJOKI</h1>
       <p id="hero-sub">Jasa joki game Roblox — aman, cepat, terpercaya</p>
       <div class="hero-actions">
         <a href="#products" class="btn-primary">Lihat Joki</a>
-        <button id="contact-btn" class="btn-outline">Kontak</button>
+        <a href="#contact" class="btn-outline">Kontak</a>
       </div>
     </div>
   </header>
 
-  <!-- Main -->
+  <!-- Produk -->
   <main>
-    <!-- Produk Section -->
-    <section id="products" aria-label="Daftar Joki">
-      <h2 id="category-title">Layanan Kami</h2>
+    <section id="products" class="products-section">
+      <h2 id="category-title">Produk</h2>
       <div id="product-list" class="product-list">
-        <!-- Produk dari products.json akan dirender di sini -->
+        <!-- produk akan di-render via script.js -->
       </div>
-    </section>
-
-    <!-- Kontak Section -->
-    <section id="kontak" class="kontak">
-      <h2>Hubungi Kami</h2>
-      <p>Butuh bantuan atau ingin order? Klik tombol di bawah untuk chat admin.</p>
-      <a href="https://wa.me/628xxxx" class="btn-primary">Chat via WhatsApp</a>
     </section>
   </main>
 
-  <!-- Keranjang -->
-  <button id="cart-btn" class="cart-float">
-    Keranjang (<span id="cart-count">0</span>)
-  </button>
+  <!-- Floating Cart Button -->
+  <button id="cart-btn" class="cart-float">Keranjang (<span id="cart-count">0</span>)</button>
 
+  <!-- Modal Keranjang -->
   <div id="cart-modal" class="modal hidden">
     <div class="modal-content">
       <h2>Keranjang</h2>
       <ul id="cart-items"></ul>
-      <div class="cart-total">Total: <span id="cart-total">0.00</span></div>
+      <div class="cart-total">Total: Rp <span id="cart-total">0</span></div>
       <div class="modal-actions">
         <button id="checkout-btn" class="btn-primary">Checkout</button>
         <button id="close-cart" class="btn-outline">Tutup</button>
@@ -70,9 +62,10 @@
     </div>
   </div>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <p>&copy; 2025 Julian Joki. Semua Hak Dilindungi.</p>
+  <!-- Contact Section -->
+  <footer id="contact" class="footer">
+    <p>Hubungi kami melalui WhatsApp: <a href="https://wa.me/6281234567890" target="_blank">Klik di sini</a></p>
+    <p>© 2025 Julian Joki. Semua Hak Dilindungi.</p>
   </footer>
 
   <script src="script.js"></script>
