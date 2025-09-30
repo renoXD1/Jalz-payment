@@ -1,65 +1,101 @@
-// ========== Load Config ==========
-async function loadConfig() {
-  try {
-    const res = await fetch('config.json');
-    const cfg = await res.json();
+let productsData = {};
+let cart = [];
 
-    // Terapkan background
-    document.body.style.background = cfg.background || "linear-gradient(135deg,#0f172a,#1e293b)";
-    document.body.style.backgroundSize = "cover";
-    document.body.style.backgroundAttachment = "fixed";
-
-    // Terapkan warna utama
-    if (cfg.accent) {
-      document.documentElement.style.setProperty('--accent', cfg.accent);
-    }
-
-    // Update nama toko
-    const storeNameEl = document.getElementById('store-name');
-    if (storeNameEl && cfg.storeName) {
-      storeNameEl.textContent = cfg.storeName;
-    }
-
-    // Update tagline
-    const taglineEl = document.getElementById('hero-sub');
-    if (taglineEl && cfg.tagline) {
-      taglineEl.textContent = cfg.tagline;
-    }
-  } catch (err) {
-    console.error("Gagal load config.json:", err);
-  }
-}
-
-// ========== Load Products ==========
+// Load products.json
 async function loadProducts() {
   try {
-    const res = await fetch('products.json');
-    const products = await res.json();
-    const container = document.getElementById('product-list');
+    const res = await fetch("products.json");
+    productsData = await res.json();
 
-    if (!container) return;
-
-    container.innerHTML = "";
-
-    products.forEach(p => {
-      const card = document.createElement('div');
-      card.className = "product-card";
-
-      card.innerHTML = `
-        <img src="${p.image}" alt="${p.name}" class="product-img" />
-        <h3>${p.name}</h3>
-        <p class="price">Rp ${p.price.toLocaleString()}</p>
-        <button class="btn-primary">Pesan</button>
-      `;
-      container.appendChild(card);
-    });
+    // Default tampil kategori pertama (misalnya Leveling)
+    const defaultCategory = Object.keys(productsData)[0];
+    renderCategory(defaultCategory);
   } catch (err) {
-    console.error("Gagal load products.json:", err);
+    console.error("Gagal load products.json", err);
   }
 }
 
-// ========== Init ==========
-document.addEventListener("DOMContentLoaded", () => {
-  loadConfig();
-  loadProducts();
+// Render produk per kategori
+function renderCategory(category) {
+  const container = document.getElementById("product-list");
+  const title = document.getElementById("category-title");
+
+  container.innerHTML = "";
+  title.textContent = category;
+
+  if (!productsData[category]) {
+    container.innerHTML = "<p>Tidak ada produk di kategori ini.</p>";
+    return;
+  }
+
+  productsData[category].forEach(product => {
+    const card = document.createElement("div");
+    card.className = "product-card";
+    card.innerHTML = `
+      <img src="${product.image}" alt="${product.name}">
+      <h3>${product.name}</h3>
+      <p>Rp ${product.price.toLocaleString()}</p>
+      <button class="btn-primary" onclick="addToCart('${category}', '${product.name}')">
+        Tambah ke Keranjang
+      </button>
+    `;
+    container.appendChild(card);
+  });
+}
+
+// Tambah ke keranjang
+function addToCart(category, productName) {
+  const product = productsData[category].find(p => p.name === productName);
+  if (!product) return;
+
+  cart.push(product);
+  updateCart();
+}
+
+// Update tampilan keranjang
+function updateCart() {
+  const cartCount = document.getElementById("cart-count");
+  const cartItems = document.getElementById("cart-items");
+  const cartTotal = document.getElementById("cart-total");
+
+  cartCount.textContent = cart.length;
+  cartItems.innerHTML = "";
+
+  let total = 0;
+  cart.forEach(item => {
+    total += item.price;
+    const li = document.createElement("li");
+    li.textContent = `${item.name} - Rp ${item.price.toLocaleString()}`;
+    cartItems.appendChild(li);
+  });
+
+  cartTotal.textContent = total.toLocaleString();
+}
+
+// Toggle menu kategori (hamburger)
+document.getElementById("menu-toggle").addEventListener("click", () => {
+  document.getElementById("menu").classList.toggle("hidden");
 });
+
+// Klik kategori di menu
+document.querySelectorAll("#menu a").forEach(link => {
+  link.addEventListener("click", e => {
+    e.preventDefault();
+    const category = e.target.dataset.category;
+    renderCategory(category);
+
+    // Tutup menu setelah pilih kategori
+    document.getElementById("menu").classList.add("hidden");
+  });
+});
+
+// Modal keranjang
+document.getElementById("cart-btn").addEventListener("click", () => {
+  document.getElementById("cart-modal").classList.remove("hidden");
+});
+document.getElementById("close-cart").addEventListener("click", () => {
+  document.getElementById("cart-modal").classList.add("hidden");
+});
+
+// Load awal
+loadProducts();
