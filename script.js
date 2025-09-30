@@ -1,101 +1,111 @@
-let productsData = {};
-let cart = [];
+document.addEventListener("DOMContentLoaded", () => {
+  const productsContainer = document.querySelector(".products");
+  const cartButton = document.getElementById("cart-button");
+  const cartModal = document.getElementById("cart-modal");
+  const cartContent = document.querySelector(".cart-content");
+  const closeCart = document.createElement("span");
 
-// Load products.json
-async function loadProducts() {
-  try {
-    const res = await fetch("products.json");
-    productsData = await res.json();
+  let cart = [];
 
-    // Default tampil kategori pertama (misalnya Leveling)
-    const defaultCategory = Object.keys(productsData)[0];
-    renderCategory(defaultCategory);
-  } catch (err) {
-    console.error("Gagal load products.json", err);
+  // Tombol X di modal keranjang
+  closeCart.innerHTML = "&times;";
+  closeCart.style.cursor = "pointer";
+  closeCart.style.float = "right";
+  closeCart.style.fontSize = "20px";
+  cartContent.prepend(closeCart);
+
+  // Fetch products.json
+  fetch("products.json")
+    .then((res) => res.json())
+    .then((data) => {
+      renderProducts(data);
+    })
+    .catch((err) => console.error("Gagal load products.json:", err));
+
+  // Render produk per kategori
+  function renderProducts(data) {
+    productsContainer.innerHTML = "";
+    for (const category in data) {
+      const section = document.createElement("div");
+      section.classList.add("category");
+
+      const title = document.createElement("h3");
+      title.textContent = category;
+      section.appendChild(title);
+
+      const list = document.createElement("div");
+      list.classList.add("product-list");
+
+      data[category].forEach((item) => {
+        const product = document.createElement("div");
+        product.classList.add("product");
+
+        product.innerHTML = `
+          <h4>${item.name}</h4>
+          <p>Rp ${item.price.toLocaleString()}</p>
+          <button>Tambah ke Keranjang</button>
+        `;
+
+        product.querySelector("button").addEventListener("click", () => {
+          addToCart(item);
+        });
+
+        list.appendChild(product);
+      });
+
+      section.appendChild(list);
+      productsContainer.appendChild(section);
+    }
   }
-}
 
-// Render produk per kategori
-function renderCategory(category) {
-  const container = document.getElementById("product-list");
-  const title = document.getElementById("category-title");
-
-  container.innerHTML = "";
-  title.textContent = category;
-
-  if (!productsData[category]) {
-    container.innerHTML = "<p>Tidak ada produk di kategori ini.</p>";
-    return;
+  // Tambah ke keranjang
+  function addToCart(item) {
+    cart.push(item);
+    updateCartButton();
+    alert(`${item.name} ditambahkan ke keranjang!`);
   }
 
-  productsData[category].forEach(product => {
-    const card = document.createElement("div");
-    card.className = "product-card";
-    card.innerHTML = `
-      <img src="${product.image}" alt="${product.name}">
-      <h3>${product.name}</h3>
-      <p>Rp ${product.price.toLocaleString()}</p>
-      <button class="btn-primary" onclick="addToCart('${category}', '${product.name}')">
-        Tambah ke Keranjang
-      </button>
+  // Update teks tombol keranjang
+  function updateCartButton() {
+    cartButton.textContent = `Keranjang (${cart.length})`;
+  }
+
+  // Tampilkan isi keranjang
+  function showCart() {
+    let total = 0;
+    let itemsHtml = "<ul style='text-align:left; margin-bottom:15px;'>";
+
+    cart.forEach((item) => {
+      total += item.price;
+      itemsHtml += `<li>${item.name} - Rp ${item.price.toLocaleString()}</li>`;
+    });
+
+    itemsHtml += "</ul>";
+    cartContent.innerHTML = `
+      <span id="close-cart" style="cursor:pointer;float:right;font-size:20px;">&times;</span>
+      <h3>Keranjang</h3>
+      ${itemsHtml}
+      <p><b>Total:</b> Rp ${total.toLocaleString()}</p>
+      <button>Checkout</button>
     `;
-    container.appendChild(card);
-  });
-}
 
-// Tambah ke keranjang
-function addToCart(category, productName) {
-  const product = productsData[category].find(p => p.name === productName);
-  if (!product) return;
+    cartModal.style.display = "flex";
 
-  cart.push(product);
-  updateCart();
-}
+    // Close button
+    document.getElementById("close-cart").addEventListener("click", () => {
+      cartModal.style.display = "none";
+    });
+  }
 
-// Update tampilan keranjang
-function updateCart() {
-  const cartCount = document.getElementById("cart-count");
-  const cartItems = document.getElementById("cart-items");
-  const cartTotal = document.getElementById("cart-total");
-
-  cartCount.textContent = cart.length;
-  cartItems.innerHTML = "";
-
-  let total = 0;
-  cart.forEach(item => {
-    total += item.price;
-    const li = document.createElement("li");
-    li.textContent = `${item.name} - Rp ${item.price.toLocaleString()}`;
-    cartItems.appendChild(li);
+  // Klik tombol keranjang
+  cartButton.addEventListener("click", () => {
+    showCart();
   });
 
-  cartTotal.textContent = total.toLocaleString();
-}
-
-// Toggle menu kategori (hamburger)
-document.getElementById("menu-toggle").addEventListener("click", () => {
-  document.getElementById("menu").classList.toggle("hidden");
-});
-
-// Klik kategori di menu
-document.querySelectorAll("#menu a").forEach(link => {
-  link.addEventListener("click", e => {
-    e.preventDefault();
-    const category = e.target.dataset.category;
-    renderCategory(category);
-
-    // Tutup menu setelah pilih kategori
-    document.getElementById("menu").classList.add("hidden");
+  // Tutup modal jika klik di luar konten
+  window.addEventListener("click", (e) => {
+    if (e.target === cartModal) {
+      cartModal.style.display = "none";
+    }
   });
 });
-
-// Modal keranjang
-document.getElementById("cart-btn").addEventListener("click", () => {
-  document.getElementById("cart-modal").classList.remove("hidden");
-});
-document.getElementById("close-cart").addEventListener("click", () => {
-  document.getElementById("cart-modal").classList.add("hidden");
-});
-
-// Load awal
-loadProducts();
