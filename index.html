@@ -7,6 +7,19 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="logo">JULIANJOKI</div>
+    <button class="menu-toggle" id="menu-toggle">☰</button>
+    <nav id="menu" class="menu hidden">
+      <ul>
+        <li><a href="#" data-category="Leveling">Joki Leveling</a></li>
+        <li><a href="#" data-category="AFK">Joki AFK</a></li>
+        <li><a href="#" data-category="Rank">Joki Rank</a></li>
+      </ul>
+    </nav>
+  </header>
+
   <!-- Hero -->
   <header id="hero" class="hero">
     <div class="hero-content">
@@ -23,7 +36,7 @@
   <main>
     <!-- Produk Section -->
     <section id="products" aria-label="Daftar Joki">
-      <h2>Layanan Kami</h2>
+      <h2 id="category-title">Layanan Kami</h2>
       <div id="product-list" class="product-list">
         <!-- Produk dari products.json akan dirender di sini -->
       </div>
