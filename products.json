@@ -1,6 +1,53 @@
-[
-  {"id":"j1","name":"Joki Leveling 1-50","price":25.00,"desc":"Naik level cepat hingga 50. Aman dan cepat.","img":"https://placehold.co/600x400?text=Leveling","available":true},
-  {"id":"j2","name":"Joki Item Langka","price":50.00,"desc":"Membantu mendapatkan item langka melalui metode aman.","img":"https://placehold.co/600x400?text=Item+Langka","available":true},
-  {"id":"j3","name":"Joki Event Terbatas","price":15.00,"desc":"Bantuan masuk event dan klaim reward.","img":"https://placehold.co/600x400?text=Event","available":false},
-  {"id":"j4","name":"joki get cengwe ang ang","price":10.00,"desc":"membantu mendapatkan cewek idaman anda jir","img":"https://placehold.co/600x400?text=cewek+idaman","available":"false"}
-]
+{
+  "Leveling": [
+    {
+      "name": "Joki Leveling 1–10",
+      "price": 15000,
+      "image": "https://placehold.co/300x200?text=Leveling+1-10"
+    },
+    {
+      "name": "Joki Leveling 1–50",
+      "price": 50000,
+      "image": "https://placehold.co/300x200?text=Leveling+1-50"
+    },
+    {
+      "name": "Joki Leveling 1–100",
+      "price": 90000,
+      "image": "https://placehold.co/300x200?text=Leveling+1-100"
+    }
+  ],
+  "AFK": [
+    {
+      "name": "Joki AFK 1 Jam",
+      "price": 5000,
+      "image": "https://placehold.co/300x200?text=AFK+1+Jam"
+    },
+    {
+      "name": "Joki AFK 5 Jam",
+      "price": 20000,
+      "image": "https://placehold.co/300x200?text=AFK+5+Jam"
+    },
+    {
+      "name": "Joki AFK 1 Hari",
+      "price": 50000,
+      "image": "https://placehold.co/300x200?text=AFK+1+Hari"
+    }
+  ],
+  "Rank": [
+    {
+      "name": "Joki Rank Bronze → Silver",
+      "price": 30000,
+      "image": "https://placehold.co/300x200?text=Rank+Bronze-Silver"
+    },
+    {
+      "name": "Joki Rank Silver → Gold",
+      "price": 60000,
+      "image": "https://placehold.co/300x200?text=Rank+Silver-Gold"
+    },
+    {
+      "name": "Joki Rank Gold → Platinum",
+      "price": 100000,
+      "image": "https://placehold.co/300x200?text=Rank+Gold-Platinum"
+    }
+  ]
+}
