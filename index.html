@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <!-- Hero -->
   <header id="hero" class="hero">
     <div class="hero-content">
       <h1 id="store-name">JULIANJOKI</h1>
@@ -18,13 +19,28 @@
     </div>
   </header>
 
+  <!-- Main -->
   <main>
-    <section id="products" class="product-list" aria-label="Daftar Joki">
-      <!-- Produk akan dirender di sini -->
+    <!-- Produk Section -->
+    <section id="products" aria-label="Daftar Joki">
+      <h2>Layanan Kami</h2>
+      <div id="product-list" class="product-list">
+        <!-- Produk dari products.json akan dirender di sini -->
+      </div>
+    </section>
+
+    <!-- Kontak Section -->
+    <section id="kontak" class="kontak">
+      <h2>Hubungi Kami</h2>
+      <p>Butuh bantuan atau ingin order? Klik tombol di bawah untuk chat admin.</p>
+      <a href="https://wa.me/628xxxx" class="btn-primary">Chat via WhatsApp</a>
     </section>
   </main>
 
-  <button id="cart-btn" class="cart-float">Keranjang (<span id="cart-count">0</span>)</button>
+  <!-- Keranjang -->
+  <button id="cart-btn" class="cart-float">
+    Keranjang (<span id="cart-count">0</span>)
+  </button>
 
   <div id="cart-modal" class="modal hidden">
     <div class="modal-content">
@@ -40,6 +56,11 @@
       </div>
     </div>
   </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2025 Julian Joki. Semua Hak Dilindungi.</p>
+  </footer>
 
   <script src="script.js"></script>
 </body>
