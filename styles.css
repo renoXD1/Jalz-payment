@@ -3,226 +3,226 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: Arial, sans-serif;
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
+  background: #f7f7f8;
+  color: #222;
   line-height: 1.6;
-  background: #f8f9fa;
-  color: #333;
 }
 
 /* Navbar */
 .navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #0066ff;
+  color: white;
+  padding: 15px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
-  background: #0d6efd;
-  color: #fff;
-  position: sticky;
-  top: 0;
   z-index: 1000;
 }
 
-.logo {
+.navbar h1 {
+  font-size: 18px;
   font-weight: bold;
-  font-size: 1.2rem;
 }
 
-.menu-toggle {
-  font-size: 1.8rem;
-  background: none;
-  border: none;
-  color: #fff;
-  cursor: pointer;
+.nav-links {
+  display: flex;
+  gap: 15px;
 }
 
-.menu {
-  position: absolute;
-  top: 60px;
-  right: 20px;
-  background: white;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 1rem;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-}
-
-.menu ul {
-  list-style: none;
-}
-
-.menu ul li {
-  margin: 0.5rem 0;
-}
-
-.menu ul li a {
+.nav-links a {
+  color: white;
   text-decoration: none;
-  color: #333;
-  font-weight: 500;
+  font-size: 14px;
 }
 
-.hidden {
+.hamburger {
   display: none;
-}
-
-/* Hero */
-.hero {
-  text-align: center;
-  padding: 4rem 2rem;
-  background: linear-gradient(to right, #0d6efd, #0b5ed7);
-  color: #fff;
-}
-
-.hero h1 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-}
-
-.hero-actions {
-  margin-top: 1.5rem;
-}
-
-.btn-primary,
-.btn-outline {
-  padding: 0.6rem 1.2rem;
-  margin: 0.3rem;
-  border: none;
-  border-radius: 6px;
+  flex-direction: column;
   cursor: pointer;
-  font-weight: 600;
+}
+
+.hamburger span {
+  height: 3px;
+  width: 25px;
+  background: white;
+  margin: 4px 0;
+  border-radius: 5px;
+}
+
+/* Hero dengan background */
+.hero {
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+
+  background-image: url("https://files.catbox.moe/abc123.jpg"); /* Ganti link */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.hero h2 {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.hero .btn {
+  background: white;
+  color: #0066ff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  text-decoration: none;
   transition: 0.3s;
 }
 
-.btn-primary {
-  background: #0d6efd;
-  color: #fff;
-}
-
-.btn-primary:hover {
-  background: #0b5ed7;
-}
-
-.btn-outline {
-  background: transparent;
-  border: 2px solid #fff;
-  color: #fff;
-}
-
-.btn-outline:hover {
-  background: #fff;
-  color: #0d6efd;
+.hero .btn:hover {
+  background: #ddd;
 }
 
 /* Produk */
-#products {
-  padding: 2rem;
-  text-align: center;
+.products {
+  max-width: 1200px;
+  margin: 50px auto;
+  padding: 0 20px;
 }
 
-#products h2 {
-  margin-bottom: 1.5rem;
-  font-size: 1.8rem;
+.category {
+  margin-bottom: 40px;
+}
+
+.category h3 {
+  font-size: 20px;
+  margin-bottom: 20px;
 }
 
 .product-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
 }
 
-.product-card {
-  background: #fff;
-  padding: 1rem;
+.product {
+  background: white;
+  padding: 15px;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.product-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
-}
-
-.product-card img {
-  max-width: 100%;
-  border-radius: 8px;
-  margin-bottom: 1rem;
-}
-
-.product-card h3 {
-  font-size: 1.1rem;
-  margin-bottom: 0.5rem;
-}
-
-.product-card p {
-  font-weight: bold;
-  margin-bottom: 0.8rem;
-}
-
-/* Kontak */
-.kontak {
-  padding: 2rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   text-align: center;
-  background: #f1f3f5;
 }
 
-.kontak h2 {
-  margin-bottom: 1rem;
+.product h4 {
+  font-size: 16px;
+  margin-bottom: 10px;
 }
 
-/* Keranjang */
-.cart-float {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #198754;
+.product p {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.product button {
+  background: #0066ff;
   color: white;
+  padding: 8px 15px;
   border: none;
-  padding: 0.8rem 1.2rem;
-  border-radius: 50px;
+  border-radius: 8px;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: 0.3s;
 }
 
-.modal {
+.product button:hover {
+  background: #0047b3;
+}
+
+/* Modal keranjang */
+.cart-modal {
+  display: none; /* Default hidden */
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background: rgba(0,0,0,0.6);
-  display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 2000;
 }
 
-.modal-content {
+.cart-content {
   background: white;
-  padding: 2rem;
+  padding: 20px;
   border-radius: 12px;
+  max-width: 400px;
   width: 90%;
-  max-width: 500px;
-}
-
-.modal-actions {
-  margin-top: 1.5rem;
-  display: flex;
-  justify-content: space-between;
-}
-
-.note {
-  margin-top: 1rem;
-  font-size: 0.9rem;
-  color: #666;
-}
-
-/* Footer */
-.footer {
   text-align: center;
-  padding: 1rem;
-  background: #0d6efd;
+}
+
+.cart-content h3 {
+  margin-bottom: 20px;
+}
+
+.cart-content button {
+  background: #0066ff;
   color: white;
-  margin-top: 2rem;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.cart-content button:hover {
+  background: #0047b3;
+}
+
+/* Tombol keranjang kecil */
+#cart-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #0066ff;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  z-index: 1500;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background: #0066ff;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 200px;
+    padding: 20px;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .hamburger {
+    display: flex;
+  }
 }
